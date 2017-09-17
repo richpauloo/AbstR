@@ -6,7 +6,7 @@ library(data.table)
 library(dplyr)
 library(DT)
 
-# set wd
+# set working directory
 # setwd('/Users/richpauloo/Desktop/AGU API')
 
 # bring in cleaned 2016 data
