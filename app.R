@@ -6,7 +6,7 @@ library(data.table)
 library(dplyr)
 library(DT)
 
-# set working directory
+# set working directory: uncomment to run locally on your server ----
 # setwd('/Users/richpauloo/Desktop/AGU API')
 
 # bring in cleaned 2016 data
@@ -24,6 +24,7 @@ ui <- fluidPage(
     # Sidebar panel for Inputs ----
     sidebarPanel(
     
+      # Title for Sidebar Panel ----
       h4(strong("Filter Abstracts")),
       
       # Horizontal line ----
@@ -109,7 +110,9 @@ ui <- fluidPage(
 ),
     # Define the main Panel ----
     mainPanel(
+      # Make two tabs on the main panel ----
       tabsetPanel(
+        # Tab to display abstracts ----
         tabPanel("Explore Abstracts",
                  shinyswipr::shinyswiprUI( "quote_swiper",
                         h4("Swipe Me!"),
@@ -139,6 +142,7 @@ ui <- fluidPage(
                         textOutput("ses_when")
                        )
         ),
+        # Tab to display previous swipes ----
         tabPanel("Swipe History",
                         # previous swipes ----
                         h4("Swipe History"),
@@ -155,7 +159,7 @@ server <- function(input, output) {
   # Define Module
   card_swipe <- callModule(shinyswipr, "quote_swiper")
   
-  # Define appVals
+  # Define appVals, a dataframe of reactive values that are overwritten with each card_swipe()
   init <- sample_n(dat, 1) %>% as.list()
   appVals <- reactiveValues(
     quote = init,
@@ -174,9 +178,10 @@ server <- function(input, output) {
   output$quote_author <- renderText({ paste(our_quote$lastName, our_quote$firstName, sep=", ") })
   output$resultsTable <- renderDataTable({ appVals$swipes })
   colnames(dat)
-  # Observe Event ----
+  
+  # Observe Event: each card_swipe() triggers this code to run----
   observeEvent( card_swipe(),{
-    #Record our last swipe results.
+    #R ecord our last swipe results.
     appVals$swipes <- rbind(
       data.frame( title = appVals$quote$abstract_title,
                   author = appVals$quote$lastName,
