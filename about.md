@@ -6,7 +6,7 @@ output:
 
 ## About this Application
 
-This R Shiny web application generates random abstracts from fields you define. This and was inspired by [PapR](https://jhubiostatistics.shinyapps.io/papr/).  
+This R Shiny web application generates random abstracts from fields you define, and helps the user swipe through AGU 2017 conference data. This app was inspired by [PapR](https://jhubiostatistics.shinyapps.io/papr/), a "tinder for academic preprints".  
 
 Data was obtained from the AGU Open API.  
 
