@@ -6,6 +6,7 @@ library(shinysense)
 library(data.table)
 library(dplyr)
 library(DT)
+library(markdown)
 
 # set wd ----
 #setwd('/Users/richpauloo/Desktop/Threadr/AbstR/AGU_2017')
